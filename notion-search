@@ -1,0 +1,12 @@
+#!/bin/sh
+
+INDEX_PATH="$HOME/.notion_pages_index" 
+
+cat $INDEX_PATH\
+  | fzf \
+  | cut -f 1 -d ' ' \
+  | sed -e 's/-//g' \
+  | awk '{print "https://notion.so/"$1}' \
+  | xargs chromium-browser --new-window
+  # Use xdg-open instead to open the default browser
+  #| xargs xdg-open

@@ -1,0 +1,14 @@
+#!/bin/sh
+
+FILE_OUT="$HOME/.notion_pages_index"
+TOKEN_PATH="$HOME/.notion_token"
+
+token=$(cat $TOKEN_PATH)
+
+curl 'https://www.notion.so/api/v3/searchBlocks' \
+  -H 'content-type: application/json' \
+  -H "cookie: token_v2=$token;" \
+  --data-binary '{"query":"","table":"space","id":"34f6d97a-b3c2-4db4-a0a0-567bc806055c","limit":10000}' \
+  --compressed \
+  | jq -r '.recordMap.block[].value | "\(.id)   \(.properties.title[0][0])"' \
+  > $FILE_OUT
