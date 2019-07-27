@@ -1,5 +1,5 @@
 #!/bin/sh
 
-#cp notion-search /usr/local/bin/
+#cp notion-search.sh /usr/local/bin/notion-search
 #chmod +x /usr/local/bin/notion-search
-ln -s `pwd`/notion-search /usr/local/bin/notion-search
+ln -s `pwd`/notion-search.sh /usr/local/bin/notion-search
